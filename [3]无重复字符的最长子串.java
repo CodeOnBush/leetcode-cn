@@ -23,8 +23,33 @@
 // 
 //
 
+import java.lang.reflect.Array;
+import java.util.*;
+
 class Solution {
     public int lengthOfLongestSubstring(String s) {
-        
+//        char[] chars = s.toCharArray();
+//        Map<Character,Integer> map = new HashMap<>(16);
+//        int left = 0;
+//        int max = 0;
+//        for (int i = 0; i < chars.length; i++) {
+//            if (map.containsKey(chars[i])) {
+//                map.
+//            }
+//        }
+//        return max;
+        if (s.length()==0) return 0;
+        HashMap<Character, Integer> map = new HashMap<Character, Integer>();
+        int max = 0;
+        int left = 0;
+        for(int i = 0; i < s.length(); i ++){
+            if(map.containsKey(s.charAt(i))){
+                left = Math.max(left,map.get(s.charAt(i)) + 1);
+            }
+            map.put(s.charAt(i),i);
+            //更新窗口最大值
+            max = Math.max(max,i-left+1);
+        }
+        return max;
     }
 }
